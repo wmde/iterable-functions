@@ -14,3 +14,15 @@ function iterable_to_array( iterable $iterable ): array {
 
 	return iterator_to_array( $iterable );
 }
+
+function iterable_to_iterator( iterable $iterable ): Iterator {
+	if ( $iterable instanceof Iterator ) {
+		return $iterable;
+	}
+
+	if ( is_array( $iterable ) ) {
+		return new ArrayIterator( $iterable );
+	}
+
+	return new \WMDE\TraversableIterator\TraversableIterator( $iterable );
+}

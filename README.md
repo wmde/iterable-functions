@@ -6,7 +6,24 @@
 [![Latest Stable Version](https://poser.pugx.org/wmde/iterable-functions/version.png)](https://packagist.org/packages/wmde/iterable-functions)
 [![Download count](https://poser.pugx.org/wmde/iterable-functions/d/total.png)](https://packagist.org/packages/wmde/iterable-functions)
 
+Provides functions to transform variables of type `iteratble` (added in PHP 7.1) into more specific
+types such as `array`.
 
+If you have an iterable somewhere and you need to pass it to a function that only takes an `array`
+or an `Iterator`, you have a problem. You will need to add conditional logic to find out the type
+of the value and transform it if needed, which gets quite involved in the case of needing an `Iterator`.
+
+This problem is quite common, as PHP's standard library, as of version 7.1, tends to either require
+arrays, iterators or traversables.
+
+Example:
+
+```php
+function doStuff(iterable $iterable) {
+    $iterableMinusFooBar = array_diff( $iterable, [ 'foo', 'bar' ] );
+}
+// Output: array_diff(): Argument #1 is not an array
+```
 
 ## Installation
 
@@ -25,6 +42,21 @@ Iterable Functions 1.x:
 
 ## Usage
 
+**When you need an array**
+
+```php
+function doStuff(iterable $iterable) {
+    $iterableMinusFooBar = array_diff( iterable_to_array( $iterable ), [ 'foo', 'bar' ] );
+}
+```
+
+**When you need an Iterator**
+
+```php
+function doStuff(iterable $iterable) {
+    $firstFewThings = new LimitIterator( iterable_to_iterator( $iterable ), 42 );
+}
+```
 
 ## Running the tests
 
@@ -44,4 +76,7 @@ For style checks only
 
 ### 0.1.0 (2017-06-17)
 
-* Initial release
+Initial release with
+ 
+* `iterable_to_array`
+* `iterable_to_iterator`

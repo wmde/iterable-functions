@@ -32,13 +32,13 @@ class IterableToArrayTest extends TestCase {
 	}
 
 	/**
-	 * @dataProvider iteratorProvider
+	 * @dataProvider traversableProvider
 	 */
-	public function testGivenIterator_itIsReturnedAsArray( array $expected, \Traversable $traversable ) {
+	public function testGivenTraversable_itIsReturnedAsArray( array $expected, \Traversable $traversable ) {
 		$this->assertSame( $expected, iterable_to_array( $traversable ) );
 	}
 
-	public function iteratorProvider() {
+	public function traversableProvider() {
 		return [
 			'empty iterator' => [
 				[],

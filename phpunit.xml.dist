@@ -12,7 +12,7 @@
          stopOnSkipped="false"
          verbose="false">
     <testsuites>
-        <testsuite name="WmdeIterableFunctions">
+        <testsuite name="IterableFunctions">
             <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
