@@ -96,7 +96,7 @@ class IterableToIteratorTest extends TestCase {
 	public function testGivenTraversable_iteratorIsReturned() {
 		$traversable = new \DatePeriod(
 			new \DateTime( '2012-08-01' ),
-			new \DateInterval('P1D'),
+			new \DateInterval( 'P1D' ),
 			new \DateTime( '2012-08-05' )
 		);
 
@@ -109,7 +109,7 @@ class IterableToIteratorTest extends TestCase {
 	public function testGivenTraversable_returnedIteratorIsRewindable() {
 		$traversable = new \DatePeriod(
 			new \DateTime( '2012-08-01' ),
-			new \DateInterval('P1D'),
+			new \DateInterval( 'P1D' ),
 			new \DateTime( '2012-08-05' )
 		);
 
