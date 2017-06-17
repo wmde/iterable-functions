@@ -36,7 +36,7 @@
 			"@phpcs"
 		],
 		"phpcs": [
-			"vendor/bin/phpcs src/ tests/ --standard=phpcs.xml --extensions=php -sp"
+			"vendor/bin/phpcs tests/ --standard=phpcs.xml --extensions=php -sp"
 		]
 	}
 }
