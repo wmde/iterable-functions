@@ -4,8 +4,7 @@
 	"homepage": "https://github.com/wmde/iterable-functions",
 	"license": "GPL-2.0+",
 	"require": {
-		"php": ">=7.1",
-		"wmde/traversable-iterator": "~1.0"
+		"php": ">=7.1"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~6.2",

@@ -24,5 +24,10 @@ function iterable_to_iterator( iterable $iterable ): Iterator {
 		return new ArrayIterator( $iterable );
 	}
 
-	return new \WMDE\TraversableIterator\TraversableIterator( $iterable );
+	// This is wrapped to avoid the whole function from wrapping its return value.
+	return ( function() use ( $iterable ) {
+		foreach ( $iterable as $key => $value ) {
+			yield $key => $value;
+		}
+	} )();
 }
