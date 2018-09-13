@@ -6,6 +6,7 @@
 <ruleset name="IterableFunctions">
     <rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki/Sniffs/WhiteSpace">
         <exclude name="vendor/mediawiki/mediawiki-codesniffer/MediaWiki/Sniffs/WhiteSpace/SpaceBeforeSingleLineCommentSniff.php" />
+        <exclude name="MediaWiki.WhiteSpace.SpaceAfterClosure.NoWhitespaceAfterClosure" />
     </rule>
 
     <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
