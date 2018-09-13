@@ -3,6 +3,14 @@
 	"description": "Functions to transform iterables into more specific types",
 	"homepage": "https://github.com/wmde/iterable-functions",
 	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Jeroen De Dauw",
+			"email": "jeroendedauw@gmail.com",
+			"homepage": "http://jeroendedauw.com",
+			"role": "Developer"
+		}
+	],
 	"require": {
 		"php": ">=7.1",
 		"wmde/traversable-iterator": "~1.0"
