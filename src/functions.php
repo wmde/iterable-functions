@@ -26,3 +26,26 @@ function iterable_to_iterator( iterable $iterable ): Iterator {
 
 	return new \WMDE\TraversableIterator\TraversableIterator( $iterable );
 }
+
+/**
+ * Similar to array_merge and should have identical behaviour for array inputs
+ * after the resulting Generator has been put through iterator_to_array.
+ *
+ * As with array_merge, numeric elements with keys are assigned a fresh key,
+ * starting with key 0.
+ *
+ * Note that if the iterables have elements with duplicate (non-numeric) keys,
+ * they will not be omitted in the Generator.
+ *
+ * @param iterable ...$iterables
+ * @return Generator
+ */
+function iterable_merge( iterable ...$iterables ): Generator {
+	$numericIndex = 0;
+
+	foreach ( $iterables as $iterable ) {
+		foreach ( $iterable as $key => $value ) {
+			yield is_int( $key ) ? $numericIndex++ : $key => $value;
+		}
+	}
+}
