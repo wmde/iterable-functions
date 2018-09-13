@@ -1,6 +1,6 @@
 # Iterable Functions
 
-[![Build Status](https://secure.travis-ci.org/wmde/iterable-functions.png?branch=master)](http://travis-ci.org/wmde/iterable-functions)
+[![Build Status](https://travis-ci.org/wmde/iterable-functions.svg?branch=master)](https://travis-ci.org/wmde/iterable-functions)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wmde/iterable-functions/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/wmde/iterable-functions/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/wmde/iterable-functions/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/wmde/iterable-functions/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/wmde/iterable-functions/version.png)](https://packagist.org/packages/wmde/iterable-functions)
