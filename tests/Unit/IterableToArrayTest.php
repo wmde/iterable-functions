@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace WMDE\IterableFunction\Tests;
+namespace WMDE\IterableFunction\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 

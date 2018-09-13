@@ -6,8 +6,8 @@
 [![Latest Stable Version](https://poser.pugx.org/wmde/iterable-functions/version.png)](https://packagist.org/packages/wmde/iterable-functions)
 [![Download count](https://poser.pugx.org/wmde/iterable-functions/d/total.png)](https://packagist.org/packages/wmde/iterable-functions)
 
-Provides functions to transform variables of type `iteratble` (added in PHP 7.1) into more specific
-types such as `array`.
+Provides basic functions to work with variables for type `iterable` (added in PHP 7.1).
+Primarily to transform variables of type `iteratble`  into more specific types such as `array`.
 
 If you have an iterable somewhere and you need to pass it to a function that only takes an `array`
 or an `Iterator`, you have a problem. You will need to add conditional logic to find out the type
@@ -73,6 +73,10 @@ For style checks only
 	composer cs
 
 ## Release notes
+
+### 0.2.0 (2018-09-13)
+
+* Added `iterable_merge`
 
 ### 0.1.0 (2017-06-17)
 
