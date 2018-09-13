@@ -35,7 +35,7 @@ function iterable_to_iterator( iterable $iterable ): Iterator {
  * starting with key 0.
  *
  * Note that if the iterables have elements with duplicate (non-numeric) keys,
- * they will not be omitted in the Generator.
+ * they will NOT be omitted in the Generator.
  *
  * @param iterable ...$iterables
  * @return Generator

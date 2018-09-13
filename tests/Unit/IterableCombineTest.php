@@ -54,4 +54,55 @@ class IterableCombineTest extends TestCase {
 		$this->assertSame( [ 'key' => 2, 'such' => 3 ], iterator_to_array( $combinedValues ) );
 	}
 
+	/**
+	 * @dataProvider arrayInputsProvider
+	 */
+	public function testEquivalencyWithArrayMergeAfterIteratorToArray( array ...$arrays ) {
+		$this->assertSame(
+			array_merge( ...$arrays ),
+			iterator_to_array( iterable_merge( ...$arrays ) )
+		);
+	}
+
+	public function arrayInputsProvider() {
+		yield 'empty arrays' => [
+			[],
+			[]
+		];
+
+		yield 'numeric indexed arrays' => [
+			[ 'a', 'b' ],
+			[ 'c', 'd' ]
+		];
+
+		yield 'special numeric indexes' => [
+			[ 10 => 'a', 'b' ],
+			[ 'c', 20 => 'd' ]
+		];
+
+		yield 'string indexes mixed with numeric ones' => [
+			[ 'foo' => 'a', 'b' ],
+			[ 'c', 'bar' => 'd' ]
+		];
+
+		yield 'duplicate keys' => [
+			[ 'foo' => 'a', 'b', 42 => 'x' ],
+			[ 'c', 'foo' => 'd', 42 => 'y' ]
+		];
+
+		yield 'one array' => [
+			[ 'c', 'foo' => 'd', 42 => 'y' ]
+		];
+
+		yield 'three arrays' => [
+			[ 'such' ],
+			[ 'foo' => 'bar' ],
+			[ 42 ]
+		];
+	}
+
+	public function testNoArgumentsResultInEmptyGenerator() {
+		$this->assertSame( [], iterator_to_array( iterable_merge() ) );
+	}
+
 }
