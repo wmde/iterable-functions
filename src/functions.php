@@ -28,14 +28,14 @@ function iterable_to_iterator( iterable $iterable ): Iterator {
 }
 
 /**
- * Similar to array_merge and should have identical behaviour for array inputs
- * after the resulting Generator has been put through iterator_to_array.
+ * array_merge clone for iterables using lazy evaluation
  *
  * As with array_merge, numeric elements with keys are assigned a fresh key,
- * starting with key 0.
+ * starting with key 0. Unlike array_merge, elements with duplicate non-numeric
+ * keys are kept in the Generator. Beware that when converting the Generator
+ * to an array with a function such as iterator_to_array, these duplicates will
+ * be dropped, resulting in identical behaviour as array_merge.
  *
- * Note that if the iterables have elements with duplicate (non-numeric) keys,
- * they will NOT be omitted in the Generator.
  *
  * @param iterable ...$iterables
  * @return Generator
