@@ -1,10 +1,7 @@
-*~
-!.*
-
-composer.phar
-composer.lock
-
-vendor/
-
-.idea/
-
+/coverage
+/doc
+/vendor
+/composer.phar
+/composer.lock
+/.idea
+/.phpunit.result.cache
