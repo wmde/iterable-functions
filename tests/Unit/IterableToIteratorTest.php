@@ -2,9 +2,10 @@
 
 declare( strict_types = 1 );
 
-namespace WMDE\IterableFunction\Tests\Unit;
+namespace WMDE\IterableFunctions\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use function WMDE\IterableFunctions\iterable_to_iterator as iterable_to_iterator;
 
 /**
  * @license GPL-2.0-or-later
@@ -14,8 +15,7 @@ class IterableToIteratorTest extends TestCase {
 
 	/**
 	 * @dataProvider arrayProvider
-	 * @covers ::iterable_to_array
-	 * @covers ::iterable_to_iterator
+	 * @covers \WMDE\IterableFunctions\iterable_to_iterator
 	 */
 	public function testGivenArray_itIsReturnedAsIterator( array $array ) {
 		$iterator = iterable_to_iterator( $array );
@@ -38,7 +38,7 @@ class IterableToIteratorTest extends TestCase {
 
 	/**
 	 * @dataProvider iteratorProvider
-	 * @covers ::iterable_to_iterator
+	 * @covers \WMDE\IterableFunctions\iterable_to_iterator
 	 */
 	public function testGivenIterable_itIsReturnedAsIs( \Traversable $traversable ) {
 		$this->assertSame( $traversable, iterable_to_iterator( $traversable ) );
@@ -69,8 +69,7 @@ class IterableToIteratorTest extends TestCase {
 	}
 
 	/**
-	 * @covers ::iterable_to_iterator
-	 * @covers ::iterable_to_array
+	 * @covers \WMDE\IterableFunctions\iterable_to_iterator
 	 */
 	public function testGivenIteratorAggregate_iteratorIsReturned() {
 		$traversable = new class() implements \IteratorAggregate {
@@ -86,7 +85,7 @@ class IterableToIteratorTest extends TestCase {
 	}
 
 	/**
-	 * @covers ::iterable_to_iterator
+	 * @covers \WMDE\IterableFunctions\iterable_to_iterator
 	 */
 	public function testGivenIteratorAggregateWithGenerator_returnedIteratorIsRewindable() {
 		$traversable = new class() implements \IteratorAggregate {
@@ -105,7 +104,7 @@ class IterableToIteratorTest extends TestCase {
 	}
 
 	/**
-	 * @covers ::iterable_to_iterator
+	 * @covers \WMDE\IterableFunctions\iterable_to_iterator
 	 */
 	public function testGivenTraversable_iteratorIsReturned() {
 		$traversable = new \DatePeriod(
@@ -121,7 +120,7 @@ class IterableToIteratorTest extends TestCase {
 	}
 
 	/**
-	 * @covers ::iterable_to_iterator
+	 * @covers \WMDE\IterableFunctions\iterable_to_iterator
 	 */
 	public function testGivenTraversable_returnedIteratorIsRewindable() {
 		$traversable = new \DatePeriod(

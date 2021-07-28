@@ -45,6 +45,8 @@ Iterable Functions 1.x:
 **When you need an array**
 
 ```php
+use function WMDE\IterableFunctions\iterable_to_array as iterable_to_array;
+
 function doStuff(iterable $iterable) {
     $iterableMinusFooBar = array_diff( iterable_to_array( $iterable ), [ 'foo', 'bar' ] );
 }
@@ -53,26 +55,35 @@ function doStuff(iterable $iterable) {
 **When you need an Iterator**
 
 ```php
+use function WMDE\IterableFunctions\iterable_to_iterator as iterable_to_iterator;
+
 function doStuff(iterable $iterable) {
     $firstFewThings = new LimitIterator( iterable_to_iterator( $iterable ), 42 );
 }
 ```
 
+**When you want to merge several iterators**
+
+```php
+use function WMDE\IterableFunctions\iterable_merge as iterable_merge
+
+function doStuff(iterable $iterable1, iterable $iterator2) {
+    foreach(iterable_to_merge( $iterable1, $iterable2 ) as $item) {
+       // ...
+    }
+}
+```
+
+
 ## Running the tests
-
-For a full CI run
-
-	composer ci
-
-For tests only
 
     composer test
 
-For style checks only
-
-	composer cs
-
 ## Release notes
+
+### 1.0.0 (2021-07-28)
+
+* Moved the functions to the WMDE\IterableFunctions namespace
 
 ### 0.2.0 (2018-09-13)
 
