@@ -2,17 +2,19 @@
 
 declare( strict_types = 1 );
 
-namespace WMDE\IterableFunction\Tests\Unit;
+namespace WMDE\IterableFunctions\Tests\Unit;
 
 use IteratorAggregate;
 use PHPUnit\Framework\TestCase;
+use function WMDE\IterableFunctions\iterable_merge as iterable_merge;
 
 /**
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class IterableCombineTest extends TestCase {
 
+	/** @covers \WMDE\IterableFunctions\iterable_merge */
 	public function testTakesDifferentIterableTypes() {
 		$combinedValues = iterable_merge(
 			[ 1, 2 ],
@@ -26,15 +28,20 @@ class IterableCombineTest extends TestCase {
 	private function newGeneratorAggregate( iterable $values ): \IteratorAggregate {
 		return new class( $values ) implements IteratorAggregate {
 			private $values;
+
 			public function __construct( iterable $values ) {
 				$this->values = $values;
 			}
+
 			public function getIterator() {
 				yield from $this->values;
 			}
 		};
 	}
 
+	/**
+	 * @covers \WMDE\IterableFunctions\iterable_merge
+	 */
 	public function testNumericKeysDoNotOverrideEachOther() {
 		$combinedValues = iterable_merge(
 			[ 1, 2 ],
@@ -44,6 +51,9 @@ class IterableCombineTest extends TestCase {
 		$this->assertSame( [ 1, 2, 3, 4 ], iterator_to_array( $combinedValues ) );
 	}
 
+	/**
+	 * @covers \WMDE\IterableFunctions\iterable_merge
+	 */
 	public function testStringKeysNotOverrideEachOther() {
 		$combinedValues = iterable_merge(
 			[ 'key' => 1 ],
@@ -56,6 +66,7 @@ class IterableCombineTest extends TestCase {
 
 	/**
 	 * @dataProvider arrayInputsProvider
+	 * @covers \WMDE\IterableFunctions\iterable_merge
 	 */
 	public function testEquivalencyWithArrayMergeAfterIteratorToArray( array ...$arrays ) {
 		$this->assertSame(
@@ -101,6 +112,9 @@ class IterableCombineTest extends TestCase {
 		];
 	}
 
+	/**
+	 * @covers \WMDE\IterableFunctions\iterable_merge
+	 */
 	public function testNoArgumentsResultInEmptyGenerator() {
 		$this->assertSame( [], iterator_to_array( iterable_merge() ) );
 	}
