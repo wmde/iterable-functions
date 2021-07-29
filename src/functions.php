@@ -3,18 +3,31 @@
 declare( strict_types = 1 );
 
 /**
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
+/**
+ * Convert an iterable to an array.
+ * @phan-template T
+ * @param iterable<T> $iterable
+ * @return array<T>
+ */
 function iterable_to_array( iterable $iterable ): array {
 	if ( is_array( $iterable ) ) {
 		return $iterable;
 	}
 
+	'@phan-var \Traversable $iterable'; // @var \Traversable $iterable
 	return iterator_to_array( $iterable );
 }
 
+/**
+ * Convert an iterable to an iterator.
+ * @phan-template T
+ * @param iterable<T> $iterable
+ * @return Iterator<T>
+ */
 function iterable_to_iterator( iterable $iterable ): Iterator {
 	if ( $iterable instanceof Iterator ) {
 		return $iterable;
@@ -24,6 +37,7 @@ function iterable_to_iterator( iterable $iterable ): Iterator {
 		return new ArrayIterator( $iterable );
 	}
 
+	'@phan-var \Traversable $iterable'; // @var \Traversable $iterable
 	return new \WMDE\TraversableIterator\TraversableIterator( $iterable );
 }
 
@@ -37,8 +51,9 @@ function iterable_to_iterator( iterable $iterable ): Iterator {
  * be dropped, resulting in identical behaviour as array_merge.
  *
  *
- * @param iterable ...$iterables
- * @return Generator
+ * @phan-template T
+ * @param iterable<T> ...$iterables
+ * @return Generator<T>
  */
 function iterable_merge( iterable ...$iterables ): Generator {
 	$numericIndex = 0;

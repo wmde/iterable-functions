@@ -7,13 +7,14 @@ namespace WMDE\IterableFunction\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class IterableToArrayTest extends TestCase {
 
 	/**
 	 * @dataProvider arrayProvider
+	 * @covers ::iterable_to_array
 	 */
 	public function testGivenArray_itIsReturnedAsIs( array $array ) {
 		$this->assertSame( $array, iterable_to_array( $array ) );
@@ -33,6 +34,7 @@ class IterableToArrayTest extends TestCase {
 
 	/**
 	 * @dataProvider traversableProvider
+	 * @covers ::iterable_to_array
 	 */
 	public function testGivenTraversable_itIsReturnedAsArray( array $expected, \Traversable $traversable ) {
 		$this->assertSame( $expected, iterable_to_array( $traversable ) );
@@ -66,7 +68,7 @@ class IterableToArrayTest extends TestCase {
 			],
 			'Generator instance' => [
 				[ 'a' => 10, 'b' => 20, 'c' => 30 ],
-				( function() {
+				( static function () {
 					yield 'a' => 10;
 					yield 'b' => 20;
 					yield 'c' => 30;
